@@ -10,7 +10,7 @@ import (
 	"github.com/maruel/panicparse/stack"
 )
 
-func CatchPanic(task func()) {
+func CatchPanicAndExec(task func()) {
 	if r := recover(); r != nil {
 		err, ok := r.(error)
 		if !ok {
@@ -36,4 +36,8 @@ func CatchPanic(task func()) {
 
 		task()
 	}
+}
+
+func CatchPanic() {
+	CatchPanicAndExec(func() {})
 }

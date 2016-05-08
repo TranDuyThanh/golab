@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	defer golab.CatchPanic(func() {
+	defer golab.CatchPanicAndExec(func() {
 		fmt.Println("--------------panic--------------")
 	})
 
