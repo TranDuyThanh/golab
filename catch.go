@@ -10,7 +10,7 @@ import (
 	"github.com/maruel/panicparse/stack"
 )
 
-func CatchPanic() {
+func CatchPanic(task func()) {
 	if r := recover(); r != nil {
 		err, ok := r.(error)
 		if !ok {
@@ -33,5 +33,7 @@ func CatchPanic() {
 			io.WriteString(os.Stdout, p.BucketHeader(&bucket, false, len(buckets) > 1))
 			io.WriteString(os.Stdout, p.StackLines(&bucket.Signature, srcLen, pkgLen, false))
 		}
+
+		task()
 	}
 }
